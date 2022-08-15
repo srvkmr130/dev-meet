@@ -1,0 +1,28 @@
+{
+  "name": "dev-meet",
+  "version": "1.0.0",
+  "description": "Backend for dev-meet",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srvkmr130/dev-meet.git"
+  },
+  "author": "Saurabh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/srvkmr130/dev-meet/issues"
+  },
+  "homepage": "https://github.com/srvkmr130/dev-meet#readme",
+  "dependencies": {
+    "apollo-server": "^3.5.0",
+    "apollo-server-core": "^3.5.0",
+    "bcryptjs": "^2.4.3",
+    "graphql": "^15.7.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.5.2"
+  }
+}
