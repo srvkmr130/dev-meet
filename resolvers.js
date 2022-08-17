@@ -13,6 +13,10 @@ const resolvers = {
     meetups: async () =>
       await Meetup.find({}).populate("userId", "_id firstName"),
     getMeetupById: async (_, { userId }) => await Meetup.find({ userId }),
+    myprofile: async (_, args, { userId }) => {
+      if (!userId) throw new Error("You must be logged in");
+      return await User.findOne({ _id: userId });
+    },
   },
   // we need to resolve for User also , because in User type (gql schema) we see it refers to meetup type.
   User: {

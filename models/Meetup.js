@@ -6,15 +6,16 @@ const meetupSchema = new mongoose.Schema({
   },
   description: {
     type: String,
+    required: true,
   },
   meetupDate: {
     type: Date,
     default: Date.now,
-    // required: true,
+    required: true,
   },
   location: {
     type: String,
-    // required: true,
+    required: true,
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId,

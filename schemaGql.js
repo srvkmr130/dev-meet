@@ -35,6 +35,7 @@ const typeDefs = gql`
     user(_id: ID!): User
     meetups: [MeetupWithName]
     getMeetupById(userId: ID!): [Meetup]
+    myprofile: User
   }
 
   type Mutation {
@@ -55,9 +56,9 @@ const typeDefs = gql`
   }
   input MeetupInput {
     title: String!
-    description: String
-    meetupDate: String
-    location: String
+    description: String!
+    meetupDate: String!
+    location: String!
   }
 `;
 
