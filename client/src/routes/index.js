@@ -1,9 +1,9 @@
-import CreateMeetup from "../components/CreateMeetup";
-import Home from "../components/Home";
-import Login from "../components/Login";
-import OtherUserProfile from "../components/OtherUserProfile";
-import Profile from "../components/Profile";
-import SignUp from "../components/SignUp";
+import CreateMeetup from "../views/CreateMeetup";
+import Home from "../views/Home";
+import Login from "../views/Login";
+import OtherUserProfile from "../views/OtherUserProfile";
+import Profile from "../views/Profile";
+import SignUp from "../views/SignUp";
 
 const ProtectedRoute = ({ isLoggedIn, children }) => {
   return isLoggedIn ? children : <Login />;

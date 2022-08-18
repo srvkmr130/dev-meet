@@ -1,0 +1,22 @@
+.meetup-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.text-center {
+  text-align: center;
+}
+.profile-header {
+  background: linear-gradient(45deg, #b0bb14, #e60505a3);
+  width: 50%;
+  margin: auto;
+  margin-top: 25px;
+  padding: 25px;
+  border-radius: 20px;
+}
+h3 {
+  font-family: monospace;
+  color: cadetblue;
+}

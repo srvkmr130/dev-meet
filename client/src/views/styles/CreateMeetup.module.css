@@ -1,0 +1,22 @@
+.form-container {
+  width: 60%;
+  margin: auto;
+  padding: 30px;
+  background: whitesmoke;
+  margin-top: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px 0.5px #bcb9b9;
+}
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-container button {
+  margin-top: 15px;
+}
+@media only screen and (max-width: 768px) {
+  .form-container {
+    width: 90%;
+  }
+}

@@ -1,10 +1,16 @@
 import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
 import { CREATE_MEETUP } from "../gqlQueries/mutations";
-import Retry from "./Retry";
+import Retry from "../components/Retry";
+import classes from "./styles/CreateMeetup.module.css";
+import MeetupSuccess from "../components/MeetupSuccess";
+import Loading from "../components/Loading";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateMeetup() {
   const [meetup, setMeetup] = useState({});
+  const [meetupCreated, setMeetupCreated] = useState(false);
+  const navigate = useNavigate();
   const [createMeetup, { loading, error, data }] = useMutation(CREATE_MEETUP, {
     refetchQueries: ["getMyProfile", "getAllMeetups"],
   });
@@ -16,23 +22,26 @@ export default function CreateMeetup() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("meetup", meetup);
     createMeetup({
       variables: {
         meetupInfo: meetup,
       },
     });
+    setMeetupCreated(true);
+    setTimeout(() => navigate("/"), 3200);
   };
-  if (loading) return <h1>Loading</h1>;
 
+  const resetHandler = (e) => {
+    e.preventDefault();
+  };
+
+  if (loading) return <Loading />;
+  if (meetupCreated) return <MeetupSuccess />;
   if (error) {
     return <Retry />;
   }
-  if (data) {
-    console.log(data);
-  }
   return (
-    <div className="container my-container">
+    <div className={classes["form-container"]}>
       {error && <div className="red card-panel">{error.message}</div>}
       {data && (
         <div className="green card-panel">
@@ -68,7 +77,12 @@ export default function CreateMeetup() {
           onChange={handleChange}
           required
         />
-        <button className="btn green">create</button>
+        <div className={classes["btn-container"]}>
+          <button className="btn green">create</button>
+          <button type="button" onClick={resetHandler} className="btn red">
+            Reset
+          </button>
+        </div>
       </form>
     </div>
   );

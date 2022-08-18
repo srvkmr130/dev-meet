@@ -3,6 +3,9 @@ export const GET_ALL_MEETUPS = gql`
   query getAllMeetups {
     meetups {
       title
+      meetupDate
+      location
+      image
       userId {
         _id
         firstName
@@ -16,6 +19,7 @@ export const GET_MY_PROFILE = gql`
       firstName
       lastName
       email
+      isCurrentUser
       meetups {
         title
       }
@@ -29,9 +33,15 @@ export const GET_USER_BY_ID = gql`
       firstName
       lastName
       email
+      isCurrentUser
       meetups {
         title
       }
     }
+  }
+`;
+export const VALIDATE_LOGIN = gql`
+  query validateLogin {
+    isLoggedIn
   }
 `;

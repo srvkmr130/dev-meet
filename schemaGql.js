@@ -7,6 +7,7 @@ const typeDefs = gql`
     lastName: String!
     email: String!
     password: String!
+    isCurrentUser: Boolean
     meetups: [Meetup]
   }
   type Meetup {
@@ -25,6 +26,7 @@ const typeDefs = gql`
     meetupDate: String
     location: String
     userId: IDWithName
+    image: String
   }
   type IDWithName {
     _id: ID
@@ -36,6 +38,7 @@ const typeDefs = gql`
     meetups: [MeetupWithName]
     getMeetupById(userId: ID!): [Meetup]
     myprofile: User
+    isLoggedIn: Boolean
   }
 
   type Mutation {

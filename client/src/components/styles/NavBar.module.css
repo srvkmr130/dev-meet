@@ -1,0 +1,33 @@
+.navLinks {
+  position: absolute;
+  right: 0%;
+}
+.navLinks li a {
+  color: #050e87;
+  font-size: large;
+  display: inline-block;
+  margin: 0 2px;
+  font-weight: 600;
+}
+.brandLogo {
+  height: inherit;
+  position: absolute;
+  width: 150px;
+}
+.brandLogo img {
+  width: 100%;
+  height: inherit;
+}
+button {
+  border-radius: 20px;
+  padding: 10px;
+  border: 2px;
+  margin: 10px;
+  background-color: #ffbc77;
+  cursor: pointer;
+}
+button:hover {
+  color: white;
+  transition: all 0.2s ease-in;
+  background-color: #c57e36;
+}

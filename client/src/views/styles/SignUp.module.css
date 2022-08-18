@@ -1,0 +1,16 @@
+.signup-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+.signup-container > div {
+  margin: 20px 40px;
+}
+.signup {
+  width: 550px;
+}
+h4 {
+  font-family: monospace;
+}
