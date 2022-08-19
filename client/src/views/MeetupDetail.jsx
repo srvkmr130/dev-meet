@@ -38,6 +38,7 @@ function MeetupDetail() {
     data,
   } = useQuery(GET_MEETUP_BY_ID, {
     variables: { meetupId },
+    fetchPolicy: "no-cache",
   });
   const [deleteMeetup, { loading, error }] = useMutation(DELETE_MEETUP, {
     refetchQueries: ["getMyProfile", "getAllMeetups"],
