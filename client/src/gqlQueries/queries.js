@@ -24,6 +24,7 @@ export const GET_MY_PROFILE = gql`
       meetups {
         title
         _id
+        image
         location
       }
     }
@@ -39,6 +40,7 @@ export const GET_USER_BY_ID = gql`
       isCurrentUser
       meetups {
         title
+        image
         _id
       }
     }
@@ -56,6 +58,7 @@ export const GET_MEETUP_BY_ID = gql`
       description
       meetupDate
       location
+      image
       userId {
         _id
         firstName

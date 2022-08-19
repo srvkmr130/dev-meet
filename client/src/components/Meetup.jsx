@@ -16,7 +16,8 @@ const ShowMoreLottie = () => {
   return <Lottie options={defaultOptions} height={30} width={150} />;
 };
 function Meetup(props) {
-  const { title, id, name, isFromDashBoard, isCurrentUser, meetupId } = props;
+  const { title, id, name, isFromDashBoard, isCurrentUser, meetupId, image } =
+    props;
   const navigate = useNavigate();
   const handleOnKnowMore = () => {
     navigate(`/meetup/${meetupId}`, { state: { allowEdit: isCurrentUser } });
@@ -25,7 +26,10 @@ function Meetup(props) {
     <div className={classes["meetup"]}>
       <div className={classes["img-banner"]}>
         <img
-          src={`https://source.unsplash.com/random/?${meetupId},technology`}
+          src={
+            image ??
+            `https://source.unsplash.com/random/?${meetupId},technology`
+          }
           alt="pic"
         />
       </div>

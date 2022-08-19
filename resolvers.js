@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "./config.js";
 import { faker } from "@faker-js/faker";
 import { GraphQLScalarType, Kind } from "graphql";
+import axios from "axios";
 
 const User = mongoose.model("User");
 const Meetup = mongoose.model("Meetup");
@@ -82,7 +83,10 @@ const resolvers = {
     },
     createMeetup: async (_, { meetupInfo }, { userId }) => {
       if (!userId) throw new Error("You must be logged in");
-      const image = faker.image.city(480, 480, false);
+      let data = await axios.get(
+        "https://source.unsplash.com/random/?laptop,technology"
+      );
+      const image = data?.request?.res?.responseUrl;
       const newMeetup = new Meetup({
         ...meetupInfo,
         userId,

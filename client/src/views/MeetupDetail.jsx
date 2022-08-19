@@ -113,7 +113,10 @@ function MeetupDetail() {
     <div className={classes["meetup-detail-container"]}>
       <div className={classes["meetup-banner"]}>
         <img
-          src={`https://source.unsplash.com/random/?${meetupId},technology`}
+          src={
+            data?.meetup?.image ??
+            `https://source.unsplash.com/random/?${meetupId},technology`
+          }
           alt="pic"
         />
       </div>

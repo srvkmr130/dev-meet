@@ -18,6 +18,7 @@ const typeDefs = gql`
     description: String
     meetupDate: Date
     location: String
+    image: String
     userId: ID
   }
   type Token {
