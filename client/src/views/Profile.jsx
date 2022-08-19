@@ -8,9 +8,7 @@ import Loading from "../components/Loading";
 import NoMeetup from "../components/NoMeetup";
 
 export default function Profile() {
-  const { loading, error, data } = useQuery(GET_MY_PROFILE, {
-    fetchPolicy: "no-cache",
-  });
+  const { loading, error, data } = useQuery(GET_MY_PROFILE);
   if (loading) return <Loading />;
   if (error) {
     return <Retry />;
