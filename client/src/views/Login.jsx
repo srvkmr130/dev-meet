@@ -25,6 +25,7 @@ export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [signinUser, { error, loading }] = useMutation(LOGIN_USER, {
+    refetchQueries: ["getMyProfile"],
     onCompleted(data) {
       localStorage.setItem("token", data.user.token);
       dispatch(
