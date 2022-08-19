@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "./config.js";
 import { faker } from "@faker-js/faker";
+import { GraphQLScalarType, Kind } from "graphql";
 
 const User = mongoose.model("User");
 const Meetup = mongoose.model("Meetup");
@@ -20,7 +21,9 @@ const resolvers = {
     },
     meetups: async () =>
       await Meetup.find({}).populate("userId", "_id firstName"),
-    getMeetupById: async (_, { userId }) => await Meetup.find({ userId }),
+    getMeetupsByUserId: async (_, { userId }) => await Meetup.find({ userId }),
+    getMeetupById: async (_, { _id }) =>
+      await Meetup.findOne({ _id }).populate("userId", "_id firstName email"),
     myprofile: async (_, args, { userId }) => {
       if (!userId) throw new Error("You must be logged in");
       return await User.findOne({ _id: userId });
@@ -35,6 +38,22 @@ const resolvers = {
     meetups: async (currentUser) =>
       await Meetup.find({ userId: currentUser._id }),
   },
+  Date: new GraphQLScalarType({
+    name: "Date",
+    description: "Date custom scalar type",
+    parseValue(value) {
+      return new Date(value);
+    },
+    serialize(value) {
+      return value.getTime();
+    },
+    parseLiteral(ast) {
+      if (ast.kind === Kind.INT) {
+        return parseInt(ast.value, 10);
+      }
+      return null;
+    },
+  }),
   Mutation: {
     signupUser: async (_, { userNew }) => {
       const user = await User.findOne({ email: userNew.email });
@@ -61,10 +80,8 @@ const resolvers = {
       const token = jwt.sign({ userId: user._id }, JWT_SECRET);
       return { token };
     },
-    // faker.image.city()
     createMeetup: async (_, { meetupInfo }, { userId }) => {
       if (!userId) throw new Error("You must be logged in");
-      console.log("data");
       const image = faker.image.city(480, 480, false);
       const newMeetup = new Meetup({
         ...meetupInfo,
@@ -72,6 +89,14 @@ const resolvers = {
         image,
       });
       return await newMeetup.save();
+    },
+    deleteMeetup: async (_, { id }, { userId }) => {
+      if (!userId) throw new Error("You must be logged in");
+      return Meetup.findByIdAndDelete(id);
+    },
+    updateMeetup: async (_, { id, meetup }, { userId }) => {
+      if (!userId) throw new Error("You must be logged in");
+      return await Meetup.findByIdAndUpdate(id, meetup);
     },
   },
 };

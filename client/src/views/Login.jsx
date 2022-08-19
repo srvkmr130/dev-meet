@@ -32,7 +32,7 @@ export default function Login() {
           isLoggedIn: true,
         })
       );
-      navigate("/");
+      navigate("/", { replace: true });
     },
   });
 

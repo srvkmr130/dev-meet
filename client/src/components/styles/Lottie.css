@@ -4,3 +4,14 @@
 .margin-top {
   margin-top: 50px;
 }
+.nothing-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.nothing-found .text {
+  font-size: 22px;
+  font-family: monospace;
+  color: rgb(112, 148, 136);
+  text-align: center;
+}

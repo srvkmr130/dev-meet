@@ -5,6 +5,7 @@ import Meetup from "../components/Meetup";
 import Retry from "../components/Retry";
 import "./styles/Home.css";
 import Loading from "../components/Loading";
+import NoMeetup from "../components/NoMeetup";
 
 export default function Profile() {
   const { loading, error, data } = useQuery(GET_MY_PROFILE);
@@ -27,20 +28,26 @@ export default function Profile() {
         <h6>Email - {data.user.email}</h6>
       </div>
       <h3 className="text-center">Your meetups</h3>
-      <div className={"meetup-container"}>
-        {data.user.meetups.map((meetup) => {
-          return (
-            <Meetup
-              key={meetup._id}
-              title={meetup.title}
-              location={meetup.location}
-              date={meetup.meetupDate}
-              image={meetup.image}
-              isFromDashBoard={false}
-            />
-          );
-        })}
-      </div>
+      {data.user.meetups.length === 0 ? (
+        <NoMeetup />
+      ) : (
+        <div className={"meetup-container"}>
+          {data.user.meetups.map((meetup) => {
+            return (
+              <Meetup
+                key={meetup._id}
+                meetupId={meetup._id}
+                title={meetup.title}
+                location={meetup.location}
+                date={meetup.meetupDate}
+                image={meetup.image}
+                isFromDashBoard={false}
+                isCurrentUser={true}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

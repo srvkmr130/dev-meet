@@ -2,6 +2,7 @@ import { gql } from "@apollo/client";
 export const GET_ALL_MEETUPS = gql`
   query getAllMeetups {
     meetups {
+      _id
       title
       meetupDate
       location
@@ -22,6 +23,8 @@ export const GET_MY_PROFILE = gql`
       isCurrentUser
       meetups {
         title
+        _id
+        location
       }
     }
   }
@@ -36,6 +39,7 @@ export const GET_USER_BY_ID = gql`
       isCurrentUser
       meetups {
         title
+        _id
       }
     }
   }
@@ -43,5 +47,20 @@ export const GET_USER_BY_ID = gql`
 export const VALIDATE_LOGIN = gql`
   query validateLogin {
     isLoggedIn
+  }
+`;
+export const GET_MEETUP_BY_ID = gql`
+  query getMeetup($meetupId: ID!) {
+    meetup: getMeetupById(_id: $meetupId) {
+      title
+      description
+      meetupDate
+      location
+      userId {
+        _id
+        firstName
+        email
+      }
+    }
   }
 `;

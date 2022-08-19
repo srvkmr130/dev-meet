@@ -28,7 +28,7 @@ export default function NavBar() {
                 <button
                   onClick={() => {
                     localStorage.removeItem("token");
-                    navigate("/login");
+                    navigate("/login", { replace: true });
                     dispatch(
                       logoutUserActionCreator({
                         isLoggedIn: false,

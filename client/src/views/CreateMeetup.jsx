@@ -28,7 +28,7 @@ export default function CreateMeetup() {
       },
     });
     setMeetupCreated(true);
-    setTimeout(() => navigate("/"), 3200);
+    setTimeout(() => navigate("/", { replace: true }), 3200);
   };
 
   const resetHandler = (e) => {

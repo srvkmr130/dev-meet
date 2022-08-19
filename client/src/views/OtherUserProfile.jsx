@@ -7,6 +7,7 @@ import Loading from "../components/Loading";
 import Meetup from "../components/Meetup";
 import "./styles/Home.css";
 import Profile from "./Profile";
+import NoMeetup from "../components/NoMeetup";
 
 export default function OtherUserProfile() {
   const { userId } = useParams();
@@ -36,20 +37,26 @@ export default function OtherUserProfile() {
       <h3 className="text-center">
         {isCurrentUser ? `Your` : `${data.user.firstName}'s`} created Meetups :
       </h3>
-      <div className={"meetup-container"}>
-        {data.user.meetups.map((meetup) => {
-          return (
-            <Meetup
-              key={meetup._id}
-              title={meetup.title}
-              location={meetup.location}
-              date={meetup.meetupDate}
-              image={meetup.image}
-              isFromDashBoard={false}
-            />
-          );
-        })}
-      </div>
+      {data.user.meetups.length === 0 ? (
+        <NoMeetup />
+      ) : (
+        <div className={"meetup-container"}>
+          {data.user.meetups.map((meetup) => {
+            return (
+              <Meetup
+                key={meetup._id}
+                title={meetup.title}
+                meetupId={meetup._id}
+                location={meetup.location}
+                date={meetup.meetupDate}
+                image={meetup.image}
+                isFromDashBoard={false}
+                isCurrentUser={isCurrentUser}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

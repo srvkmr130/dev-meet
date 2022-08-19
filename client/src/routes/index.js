@@ -1,6 +1,7 @@
 import CreateMeetup from "../views/CreateMeetup";
 import Home from "../views/Home";
 import Login from "../views/Login";
+import MeetupDetail from "../views/MeetupDetail";
 import OtherUserProfile from "../views/OtherUserProfile";
 import Profile from "../views/Profile";
 import SignUp from "../views/SignUp";
@@ -33,6 +34,14 @@ export const routes = (isLoggedIn) => [
     element: (
       <ProtectedRoute isLoggedIn={isLoggedIn}>
         <OtherUserProfile />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/meetup/:meetupId",
+    element: (
+      <ProtectedRoute isLoggedIn={isLoggedIn}>
+        <MeetupDetail />
       </ProtectedRoute>
     ),
   },
