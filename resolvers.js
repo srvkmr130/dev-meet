@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { JWT_SECRET } from "./config.js";
-import { faker } from "@faker-js/faker";
 import { GraphQLScalarType, Kind } from "graphql";
 import axios from "axios";
 
@@ -78,7 +76,7 @@ const resolvers = {
       if (!doMatch) {
         throw new Error("email or password in invalid");
       }
-      const token = jwt.sign({ userId: user._id }, JWT_SECRET);
+      const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
       return { token };
     },
     createMeetup: async (_, { meetupInfo }, { userId }) => {
