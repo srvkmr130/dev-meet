@@ -3,6 +3,7 @@ import Home from "../views/Home";
 import Login from "../views/Login";
 import MeetupDetail from "../views/MeetupDetail";
 import OtherUserProfile from "../views/OtherUserProfile";
+import PageNotFound from "../views/PageNotFound";
 import Profile from "../views/Profile";
 import SignUp from "../views/SignUp";
 
@@ -45,4 +46,5 @@ export const routes = (isLoggedIn) => [
       </ProtectedRoute>
     ),
   },
+  { path: "*", element: <PageNotFound /> },
 ];
